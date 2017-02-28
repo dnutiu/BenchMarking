@@ -38,7 +38,7 @@ public enum TimeUnit {
      * @return The quotient of time / time unit.
      */
     @Contract(pure = true)
-    public long converNanosecondTo(long time, TimeUnit unit) {
+    public static long converNanosecondTo(long time, TimeUnit unit) {
         return (time / unit.precision);
     }
 }
