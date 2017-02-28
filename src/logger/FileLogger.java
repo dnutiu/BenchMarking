@@ -7,7 +7,7 @@ import java.io.BufferedWriter;
 
 
 /**
- * The logger is used to log items into a file.
+ * The file logger class.
  */
 public class FileLogger implements ILogger {
 

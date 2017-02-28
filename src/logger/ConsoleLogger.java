@@ -1,7 +1,7 @@
 package logger;
 
 /**
- * The basic console logger class.
+ * The console logger class.
  */
 public class ConsoleLogger implements ILogger {
 
