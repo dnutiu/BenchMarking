@@ -34,4 +34,12 @@ public class Timer implements ITimer{
     public void resume() {
         startTime = System.nanoTime();
     }
+
+    /**
+     * Function used to get the time that has passed.
+     * @return Returns the total time that has passed.
+     */
+    public long getTimePassed() {
+        return this.timePassed;
+    }
 }
