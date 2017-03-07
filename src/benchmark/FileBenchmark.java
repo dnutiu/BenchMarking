@@ -123,7 +123,7 @@ public class FileBenchmark implements IBenchmark {
             logger.write("FileBenchmark read failed");
             logger.write(e.getMessage());
         }
-
+        logger.write("FileBenchmark test finished.");
     }
 
     @Override
