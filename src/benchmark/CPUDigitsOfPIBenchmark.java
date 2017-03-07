@@ -1,6 +1,5 @@
 package benchmark;
 import javax.naming.OperationNotSupportedException;
-import java.io.IOException;
 
 /**
  * Class used to test the power of the CPU by computing the digits of PI.
@@ -22,7 +21,12 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
      * @param numberOfDigits The number of digits.
      */
     public void setNumberOfDigits(int numberOfDigits) {
-        this.numberOfDigits = numberOfDigits;
+        if (numberOfDigits > 0) {
+            this.numberOfDigits = numberOfDigits;
+        } else {
+            this.numberOfDigits = 1;
+        }
+
     }
 
     /**
@@ -50,8 +54,12 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
     }
 
     @Override
-    public void run(Object... parameters) throws OperationNotSupportedException {}
+    public void run(Object... parameters) throws OperationNotSupportedException {
+        throw new OperationNotSupportedException("Method not implemented!");
+    }
 
     @Override
-    public void clean() throws OperationNotSupportedException {}
+    public void clean() throws OperationNotSupportedException {
+        throw new OperationNotSupportedException("Method not implemented!");
+    }
 }
