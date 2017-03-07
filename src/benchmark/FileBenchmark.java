@@ -103,7 +103,9 @@ public class FileBenchmark implements IBenchmark {
     }
 
     @Override
-    public void run(Object... parameters) throws OperationNotSupportedException {}
+    public void run(Object... parameters) throws OperationNotSupportedException {
+        throw new OperationNotSupportedException("Method not implemented!");
+    }
 
     @Override
     public void clean() {
