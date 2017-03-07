@@ -1,8 +1,10 @@
 package benchmark;
 
+import javax.naming.OperationNotSupportedException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * The FileBenchmark class will the the system's I/O capabilities
@@ -15,7 +17,6 @@ public class FileBenchmark implements IBenchmark {
     private int bufferSize;
     private long bytes;
     private byte[] buffer;
-    private int errors;
 
     /**
      * Returns the file size in MegaBytes.
@@ -73,33 +74,25 @@ public class FileBenchmark implements IBenchmark {
 
         this.bytesToUse = bytes / bufferSize;
         this.fileSize = bytes / 1000000;
-        this.errors = 0;
     }
 
     @Override
-    public void run() {
-        // TODO: Perhaps add exception if class is not initialised.
+    public void run() throws IOException {
         try (FileOutputStream fileOutputStream = new FileOutputStream(file) ) {
             // Write buffer to file till bytesToUse / bufferSyze is reached.
             for (long i = 0; i < this.bytesToUse; ++i) {
                 fileOutputStream.write(this.buffer);
             }
             fileOutputStream.flush();
-        } catch (java.io.IOException e) {
-            errors += 1;
         }
 
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
             while ( fileInputStream.read(this.buffer) != -1 );
-        } catch (java.io.IOException e) {
-            this.errors += 1;
         }
     }
 
     @Override
-    public void run(Object... parameters) {
-        System.out.println("Operation not implemented!");
-    }
+    public void run(Object... parameters) throws OperationNotSupportedException {}
 
     @Override
     public void clean() {

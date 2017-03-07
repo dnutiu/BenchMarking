@@ -1,15 +1,10 @@
 package benchmark;
-import logger.ConsoleLogger;
-import logger.ILogger;
-import logger.TimeUnit;
-import timer.Timer;
+import javax.naming.OperationNotSupportedException;
 
 /**
  * Class used to test the power of the CPU by computing the digits of PI.
  */
 public class CPUDigitsOfPIBenchmark implements IBenchmark {
-    private ILogger logger;
-    private Timer timer;
     private int numberOfDigits;
 
     /**
@@ -40,32 +35,17 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
 
     @Override
     public void initialize() {
-        this.logger = new ConsoleLogger();
-        this.timer  = new Timer();
         this.numberOfDigits = 10000;
     }
 
     @Override
     public void run() {
-        logger.write("Starting CPU Benchmark: Computing PI");
-
-        timer.start();
         this.computeDigitsOfPi(this.numberOfDigits);
-        timer.stop();
-
-        logger.write("The time it took to compute " + this.numberOfDigits + " digits of PI: "
-                + TimeUnit.converNanosecondTo(timer.getTimePassed(), TimeUnit.MILISECOND) + " ms.");
-
-        logger.write("CPU Benchmark finished.");
     }
 
     @Override
-    public void run(Object... parameters) {
-
-    }
+    public void run(Object... parameters) throws OperationNotSupportedException {}
 
     @Override
-    public void clean() {
-
-    }
+    public void clean() throws OperationNotSupportedException {}
 }
