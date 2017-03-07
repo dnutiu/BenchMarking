@@ -53,6 +53,12 @@ public class CPUDigitsOfPIBenchmarkTest {
         benchmark.clean();
     }
 
+    @Test
+    public void run() throws OperationNotSupportedException {
+        benchmark.setNumberOfDigits(1);
+        benchmark.run();
+    }
+
     @Test (expected = OperationNotSupportedException.class)
     public void runWithParams() throws OperationNotSupportedException {
         benchmark.run(1);
