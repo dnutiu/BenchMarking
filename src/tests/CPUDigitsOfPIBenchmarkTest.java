@@ -60,6 +60,6 @@ public class CPUDigitsOfPIBenchmarkTest {
 
     @Test
     public void warmUp() {
-        benchmark.warmup();
+        benchmark.warmUp();
     }
 }

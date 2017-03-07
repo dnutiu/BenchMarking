@@ -70,7 +70,7 @@ public class FileBenchmark implements IBenchmark {
     }
 
     @Override
-    public void warmup() throws IOException {
+    public void warmUp() throws IOException {
         this.run();
     }
 
