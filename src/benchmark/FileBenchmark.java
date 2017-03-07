@@ -68,7 +68,7 @@ public class FileBenchmark implements IBenchmark {
     }
 
     @Override
-    public void initialize(long see) {
+    public void initialize() {
         file = new File("defaultTestFile");
 
         this.bytesToUse = bytes / bufferSize;

@@ -7,9 +7,8 @@ package benchmark;
 public interface IBenchmark {
     /**
      * This will initialize the benchmark with the default values.
-     * @param see TODO
      */
-    void initialize(long see); // TODO: SEE neds clarification
+    void initialize();
 
     /**
      * This will run the benchmark.
