@@ -26,7 +26,6 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
         } else {
             this.numberOfDigits = 1;
         }
-
     }
 
     /**
