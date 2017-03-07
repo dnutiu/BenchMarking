@@ -20,7 +20,25 @@ public class FileBenchmark implements IBenchmark {
     private Timer timer;
     private long bytesToUse;
     private long fileSize;
+    private int bufferSize;
+    private long bytes;
     private byte[] buffer;
+
+    /**
+     * Returns the file size in MegaBytes.
+     * @return the size of the file used in this benchmark.
+     */
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    /**
+     * Gets the size of the buffer. The size of the buffer will be used when reading/writing to a file.
+     * @return the size of the buffer.
+     */
+    public int getBufferSize() {
+        return bufferSize;
+    }
 
     /**
      * Constructs a FileBenchmark class with the default size of 100 MB and 1024 buffer size.
@@ -32,11 +50,28 @@ public class FileBenchmark implements IBenchmark {
     /**
      * Constructs a FileBenchmark class.
      * @param bytes The number bytes that should be used for the test.
+     * @param bufferSize The size of the write/read buffer.
      */
     public FileBenchmark(long bytes, int bufferSize) {
-        this.bytesToUse = bytes / bufferSize;
-        this.fileSize = bytes / 1000000;
+        this.bufferSize = bufferSize;
+        this.bytes = bytes;
         this.buffer = new byte[bufferSize];
+    }
+
+    /**
+     * Sets the buffersize which will be used to read/write n bytes at a time.
+     * @param bufferSize The buffersize.
+     */
+    public void setBufferSize(int bufferSize) {
+        this.bufferSize = bufferSize;
+    }
+
+    /**
+     * Sets the number of bytes of the file size.
+     * @param bytes The filesize in bytes.
+     */
+    public void setBytes(long bytes) {
+        this.bytes = bytes;
     }
 
     @Override
@@ -45,6 +80,9 @@ public class FileBenchmark implements IBenchmark {
         timer = new Timer();
         file = new File("defaultTestFile");
         logger = new ConsoleLogger();
+
+        this.bytesToUse = bytes / bufferSize;
+        this.fileSize = bytes / 1000000;
     }
 
     @Override
