@@ -11,6 +11,7 @@ import java.io.IOException;
  * by writing a file and reading from it.
  */
 public class FileBenchmark implements IBenchmark {
+    private static int uniqueIndentifier;
     private File file;
     private long bytesToUse;
     private long fileSize;
@@ -70,7 +71,8 @@ public class FileBenchmark implements IBenchmark {
 
     @Override
     public void initialize() {
-        file = new File("defaultTestFile");
+        FileBenchmark.uniqueIndentifier += 1;
+        file = new File("defaultTestFile" + FileBenchmark.uniqueIndentifier);
 
         this.bytesToUse = bytes / bufferSize;
         this.fileSize = bytes / 1000000;
@@ -84,10 +86,14 @@ public class FileBenchmark implements IBenchmark {
                 fileOutputStream.write(this.buffer);
             }
             fileOutputStream.flush();
+        } catch (IOException e) {
+            throw new IOException("FileBenchmark READ/WRITE failed at write test.");
         }
 
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
             while ( fileInputStream.read(this.buffer) != -1 );
+        } catch (IOException e) {
+            throw new IOException("FileBenchmark READ/WRITE failed at read test.");
         }
     }
 
