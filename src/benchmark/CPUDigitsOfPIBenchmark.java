@@ -1,5 +1,6 @@
 package benchmark;
 import javax.naming.OperationNotSupportedException;
+import java.io.IOException;
 
 /**
  * Class used to test the power of the CPU by computing the digits of PI.
@@ -31,6 +32,11 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
     private void computeDigitsOfPi(int n) {
         Pi piComputation = new Pi(n);
         piComputation.execute();
+    }
+
+    @Override
+    public void warmup(){
+        this.computeDigitsOfPi(1000);
     }
 
     @Override

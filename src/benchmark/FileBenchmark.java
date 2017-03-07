@@ -70,6 +70,11 @@ public class FileBenchmark implements IBenchmark {
     }
 
     @Override
+    public void warmup() throws IOException {
+        this.run();
+    }
+
+    @Override
     public void initialize() {
         FileBenchmark.uniqueIndentifier += 1;
         file = new File("defaultTestFile" + FileBenchmark.uniqueIndentifier);
