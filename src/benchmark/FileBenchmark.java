@@ -50,7 +50,6 @@ public class FileBenchmark implements IBenchmark {
     public FileBenchmark(long bytes, int bufferSize) {
         this.bufferSize = bufferSize;
         this.bytes = bytes;
-        this.buffer = new byte[bufferSize];
     }
 
     /**
@@ -81,16 +80,17 @@ public class FileBenchmark implements IBenchmark {
 
         this.bytesToUse = bytes / bufferSize;
         this.fileSize = bytes / 1000000;
+        this.buffer = new byte[this.bufferSize];
     }
 
     @Override
     public void run() throws IOException {
         try (FileOutputStream fileOutputStream = new FileOutputStream(file) ) {
-            // Write buffer to file till bytesToUse / bufferSyze is reached.
+            // Write buffer to file till bytes / bufferSize is reached.
             for (long i = 0; i < this.bytesToUse; ++i) {
                 fileOutputStream.write(this.buffer);
+                fileOutputStream.flush(); // we want to write down every iteration
             }
-            fileOutputStream.flush();
         } catch (IOException e) {
             throw new IOException("FileBenchmark READ/WRITE failed at write test.");
         }
