@@ -54,6 +54,7 @@ public class FileBenchmark implements IBenchmark {
 
     /**
      * Sets the buffersize which will be used to read/write n bytes at a time.
+     * You need to reinitialize this benchmark after calling this function.
      * @param bufferSize The buffersize.
      */
     public void setBufferSize(int bufferSize) {
@@ -62,6 +63,7 @@ public class FileBenchmark implements IBenchmark {
 
     /**
      * Sets the number of bytes of the file size.
+     * You need to reinitialize this benchmark after calling this function.
      * @param bytes The filesize in bytes.
      */
     public void setBytes(long bytes) {
