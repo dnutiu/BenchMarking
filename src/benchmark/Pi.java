@@ -1,3 +1,22 @@
+/*
+ * Copyright (c) 2017 Nutiu Denis-Cosmin <denis.nutiu@gmail.com>
+ *
+ * This file is part of BenchMarking.
+ *
+ * BenchMarking is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * BenchMarking is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package benchmark;
 
 import java.math.*;
@@ -6,7 +25,7 @@ import java.math.*;
  * Utility class uesd to compute the digits of PI.
  * credits: http://www.it.uc3m.es/~pedmume/asignaturas/2007/SI/rmi/rmi/Pi.java
  */
-public class Pi {
+class Pi {
 
     /** constants used in pi computation */
     private static final BigDecimal ZERO = BigDecimal.valueOf(0);
@@ -24,14 +43,14 @@ public class Pi {
      * Construct a task to calculate pi to the specified
      * precision.
      */
-    public Pi(int digits) {
+    Pi(int digits) {
         this.digits = digits;
     }
 
     /**
      * Calculate pi.
      */
-    public Object execute() {
+    Object execute() {
         return computePi(digits);
     }
 
@@ -45,7 +64,7 @@ public class Pi {
      * and a power series expansion of arctan(x) to
      * sufficient precision.
      */
-    public static BigDecimal computePi(int digits) {
+    private static BigDecimal computePi(int digits) {
         int scale = digits + 5;
         BigDecimal arctan1_5 = arctan(5, scale);
         BigDecimal arctan1_239 = arctan(239, scale);
@@ -64,8 +83,8 @@ public class Pi {
      * arctan(x) = x - (x^3)/3 + (x^5)/5 - (x^7)/7 +
      *     (x^9)/9 ...
      */
-    public static BigDecimal arctan(int inverseX,
-                                    int scale)
+    private static BigDecimal arctan(int inverseX,
+                                     int scale)
     {
         BigDecimal result, numer, term;
         BigDecimal invX = BigDecimal.valueOf(inverseX);
