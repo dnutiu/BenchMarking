@@ -63,22 +63,24 @@ public class PrimarySceneController implements Initializable {
     private void loadBenchMarks() {
         benchmarks.put("Hello", () -> System.out.println("Hello World!"));
 
-        benchmarks.put("DigitsOfPi", () -> {
+        benchmarks.put("CPUNumberRepresentation", () -> {
             CPUFixedPointTest fpt = new CPUFixedPointTest();
             fpt.initialize(100000000);
             fpt.warmUp();
 
-            logger.write("Benchmark starting for fixed");
+            logger.write("Benchmark starting CPUNumberRepresentation: Integer");
             timer.start();
             fpt.run(NumberRepresentation.FIXED);
+            logger.write("Result is " + fpt.getResult());
             logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
-            logger.write("Sum is " + fpt.getResult());
 
-            logger.write("Benchmark starting for float");
+
+            logger.write("Benchmark starting CPUNumberRepresentation: Float");
             timer.start();
             fpt.run(NumberRepresentation.FLOATING);
-            logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
             logger.write("Sum is " + fpt.getResult());
+            logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
+
         });
 
         benchmarks.put("CPUBranches", () -> {
