@@ -40,11 +40,11 @@ import java.util.*;
 public class PrimarySceneController implements Initializable {
     private Timer timer;
     private TextAreaLogger logger;
-    private HashMap benchmarks;
+    private HashMap<String, Runnable> benchmarks;
     @FXML
     private TextArea textConsole;
     @FXML
-    private ChoiceBox choiceBox;
+    private ChoiceBox<String> choiceBox;
 
 
     @Override
@@ -52,39 +52,31 @@ public class PrimarySceneController implements Initializable {
         /* We'll do all the initialization work here. */
         timer = new Timer();
         logger = new TextAreaLogger();
-        benchmarks = new HashMap<String, Runnable>();
+        benchmarks = new HashMap<>();
         logger.setTextArea(this.textConsole);
 
         this.loadBenchMarks();
     }
 
     private void loadBenchMarks() {
-        benchmarks.put("Hello", new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello World!");
-            }
-        });
+        benchmarks.put("Hello", () -> System.out.println("Hello World!"));
 
-        benchmarks.put("DigitsOfPi", new Runnable() {
-            @Override
-            public void run() {
-                CPUFixedPointTest fpt = new CPUFixedPointTest();
-                fpt.initialize(100000000);
-                fpt.warmUp();
+        benchmarks.put("DigitsOfPi", () -> {
+            CPUFixedPointTest fpt = new CPUFixedPointTest();
+            fpt.initialize(100000000);
+            fpt.warmUp();
 
-                logger.write("Benchmark starting for fixed");
-                timer.start();
-                fpt.run(NumberRepresentation.FIXED);
-                logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
-                logger.write("Sum is " + fpt.getResult());
+            logger.write("Benchmark starting for fixed");
+            timer.start();
+            fpt.run(NumberRepresentation.FIXED);
+            logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
+            logger.write("Sum is " + fpt.getResult());
 
-                logger.write("Benchmark starting for float");
-                timer.start();
-                fpt.run(NumberRepresentation.FLOATING);
-                logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
-                logger.write("Sum is " + fpt.getResult());
-            }
+            logger.write("Benchmark starting for float");
+            timer.start();
+            fpt.run(NumberRepresentation.FLOATING);
+            logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
+            logger.write("Sum is " + fpt.getResult());
         });
 
         // add the keys to the list
@@ -98,9 +90,9 @@ public class PrimarySceneController implements Initializable {
 
     @FXML
     private void runBenchmark(ActionEvent actionEvent) {
-        String key = (String) choiceBox.getValue();
+        String key = choiceBox.getValue();
         if (key != null) {
-            Runnable methodToRun = (Runnable) benchmarks.get(key);
+            Runnable methodToRun = benchmarks.get(key);
             if (methodToRun != null) {
                 methodToRun.run();
             }
