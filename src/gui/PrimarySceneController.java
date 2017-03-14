@@ -19,6 +19,7 @@
 
 package gui;
 
+import benchmark.cpu.CPUArithmeticBenchmark;
 import benchmark.cpu.CPUBranchBenchmark;
 import benchmark.cpu.CPUFixedPointTest;
 import benchmark.utilities.NumberRepresentation;
@@ -90,6 +91,17 @@ public class PrimarySceneController implements Initializable {
             bm.run();
             logger.writeTime(timer.stop(), TimeUnit.MICROSECOND);
 
+        });
+
+        benchmarks.put("CPUArithmetic", () -> {
+            CPUArithmeticBenchmark bm = new CPUArithmeticBenchmark();
+            bm.initialize(10000000);
+            bm.warmUp();
+
+            logger.write("Benchmark starting for CPUArithmetic");
+            timer.start();
+            bm.run();
+            logger.writeTime(timer.stop(), TimeUnit.MICROSECOND);
         });
 
         // add the keys to the list
