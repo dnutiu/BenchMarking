@@ -58,7 +58,7 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
 
     @Override
     public void warmUp(){
-        this.computeDigitsOfPi(1000);
+        this.computeDigitsOfPi(10000);
     }
 
     @Override
