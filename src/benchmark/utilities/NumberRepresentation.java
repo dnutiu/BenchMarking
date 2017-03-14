@@ -20,5 +20,5 @@
 package benchmark.utilities;
 
 public enum NumberRepresentation {
-	FLOATING, FIXED
+    FLOATING, FIXED
 }
