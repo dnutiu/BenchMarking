@@ -32,7 +32,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("primaryScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/primaryScene.fxml"));
         primaryStage.setTitle("The BenchMarking");
         primaryStage.setScene(new Scene(root, 700, 480));
         primaryStage.show();

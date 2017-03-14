@@ -34,10 +34,10 @@
     <VBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="1"
           GridPane.columnSpan="2">
         <Text text="CPU Benchmarks" />
-        <Button text="Digits of Pi" onAction="#handleRunDigitsOfPi"/>
+        <Button text="Run Benchmark" onAction="#handleRunDigitsOfPi"/>
     </VBox>
     <ScrollPane GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="4">
-        <TextArea fx:id="textConsole" maxWidth="521"/>
+        <TextArea fx:id="textConsole" maxWidth="521" editable="false"/>
     </ScrollPane>
 
 </GridPane>

@@ -24,23 +24,27 @@ import benchmark.cpu.CPUFixedPointTest;
 import benchmark.utilities.NumberRepresentation;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import logger.ILogger;
 import logger.TextAreaLogger;
 import logger.TimeUnit;
 import timer.Timer;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Controls the events and actions for the primary view of the application.
  * The primary view represents the first root.
  */
-public class PrimarySceneController {
+public class PrimarySceneController implements Initializable {
     private Timer timer;
     private TextAreaLogger logger;
-    public TextArea textConsole;
-
     @FXML
-    public void initialize() {
+    private TextArea textConsole;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         /* We'll do all the initialization work here. */
         timer = new Timer();
         logger = new TextAreaLogger();
@@ -48,36 +52,22 @@ public class PrimarySceneController {
     }
 
     @FXML
-    public void handleRunDigitsOfPi2(ActionEvent actionEvent) {
-        CPUDigitsOfPIBenchmark benchmark = new CPUDigitsOfPIBenchmark();
-        benchmark.warmUp();
-        benchmark.initialize();
-        textConsole.appendText("Benchmark starting.\n");
-        benchmark.setNumberOfDigits(5000);
-        timer.start();
-        benchmark.run();
-        textConsole.appendText("Finished " +
-                TimeUnit.converNanosecondTo(timer.stop(), TimeUnit.MILISECOND) + "ms\n");
-    }
-
-    @FXML
-    void handleRunDigitsOfPi(ActionEvent actionEvent) {
+    private void handleRunDigitsOfPi(ActionEvent actionEvent) {
         CPUFixedPointTest fpt = new CPUFixedPointTest();
-        fpt.initialize();
         fpt.warmUp();
         fpt.setSize(100000000);
 
         logger.write("Benchmark starting for fixed");
         timer.start();
         fpt.run(NumberRepresentation.FIXED);
-        logger.write("Sum is " + fpt.getResult());
         logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
+        logger.write("Sum is " + fpt.getResult());
 
         logger.write("Benchmark starting for float");
         timer.start();
         fpt.run(NumberRepresentation.FLOATING);
-        logger.write("Sum is " + fpt.getResult());
         logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
+        logger.write("Sum is " + fpt.getResult());
 
     }
 }
