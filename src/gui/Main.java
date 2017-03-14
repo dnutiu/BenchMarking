@@ -34,7 +34,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/primaryScene.fxml"));
         primaryStage.setTitle("The BenchMarking");
-        primaryStage.setScene(new Scene(root, 700, 480));
+        primaryStage.setScene(new Scene(root, 720, 380));
+        primaryStage.setMinWidth(720);
+        primaryStage.setMinHeight(380);
         primaryStage.show();
     }
 

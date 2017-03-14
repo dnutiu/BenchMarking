@@ -24,20 +24,22 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ScrollPane?>
-
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <GridPane fx:controller="gui.PrimarySceneController"
           xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10" vgap="10">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-    <Text text="This application is still a demo."
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="6" />
-    <VBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="1"
+    <VBox spacing="10" alignment="BASELINE_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1"
           GridPane.columnSpan="2">
-        <Text text="CPU Benchmarks" />
-        <Button text="Run Benchmark" onAction="#handleRunDigitsOfPi"/>
+        <Text text="Select a benchmark to run:"/>
+        <ChoiceBox fx:id="choiceBox">
+        </ChoiceBox>
+        <Button text="Run Benchmark" onAction="#runBenchmark"/>
     </VBox>
     <ScrollPane GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="4">
-        <TextArea fx:id="textConsole" maxWidth="521" editable="false"/>
+        <TextArea fx:id="textConsole" editable="false"/>
     </ScrollPane>
 
 </GridPane>
