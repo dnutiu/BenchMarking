@@ -20,9 +20,13 @@
 package gui;
 
 import benchmark.cpu.CPUDigitsOfPIBenchmark;
+import benchmark.cpu.CPUFixedPointTest;
+import benchmark.utilities.NumberRepresentation;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
+import logger.ILogger;
+import logger.TextAreaLogger;
 import logger.TimeUnit;
 import timer.Timer;
 
@@ -32,16 +36,19 @@ import timer.Timer;
  */
 public class PrimarySceneController {
     private Timer timer;
+    private TextAreaLogger logger;
     public TextArea textConsole;
 
     @FXML
     public void initialize() {
         /* We'll do all the initialization work here. */
         timer = new Timer();
+        logger = new TextAreaLogger();
+        logger.setTextArea(this.textConsole);
     }
 
     @FXML
-    public void handleRunDigitsOfPi(ActionEvent actionEvent) {
+    public void handleRunDigitsOfPi2(ActionEvent actionEvent) {
         CPUDigitsOfPIBenchmark benchmark = new CPUDigitsOfPIBenchmark();
         benchmark.warmUp();
         benchmark.initialize();
@@ -51,5 +58,26 @@ public class PrimarySceneController {
         benchmark.run();
         textConsole.appendText("Finished " +
                 TimeUnit.converNanosecondTo(timer.stop(), TimeUnit.MILISECOND) + "ms\n");
+    }
+
+    @FXML
+    void handleRunDigitsOfPi(ActionEvent actionEvent) {
+        CPUFixedPointTest fpt = new CPUFixedPointTest();
+        fpt.initialize();
+        fpt.warmUp();
+        fpt.setSize(100000000);
+
+        logger.write("Benchmark starting for fixed");
+        timer.start();
+        fpt.run(NumberRepresentation.FIXED);
+        logger.write("Sum is " + fpt.getResult());
+        logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
+
+        logger.write("Benchmark starting for float");
+        timer.start();
+        fpt.run(NumberRepresentation.FLOATING);
+        logger.write("Sum is " + fpt.getResult());
+        logger.writeTime(timer.stop(), TimeUnit.MILISECOND);
+
     }
 }
