@@ -60,4 +60,25 @@ public enum TimeUnit {
     public static long converNanosecondTo(long time, TimeUnit unit) {
         return (time / unit.precision);
     }
+
+    @Contract(pure = true)
+    public static String getTimeUnit(TimeUnit unit) {
+        String timeUnit = null;
+        switch (unit) {
+            case MICROSECOND:
+                timeUnit = " µs + \n";
+                break;
+            case MILISECOND:
+                timeUnit = " ms + \n";
+                break;
+            case NANOSECOND:
+                timeUnit = " ns + \n";
+                break;
+            case SECOND:
+                timeUnit = " s + \n";
+                break;
+            default:
+        }
+        return timeUnit;
+    }
 }
