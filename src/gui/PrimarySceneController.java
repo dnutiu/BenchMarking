@@ -19,6 +19,7 @@
 
 package gui;
 
+import benchmark.cpu.CPUBranchBenchmark;
 import benchmark.cpu.CPUFixedPointTest;
 import benchmark.utilities.NumberRepresentation;
 import javafx.collections.ObservableList;
@@ -79,6 +80,18 @@ public class PrimarySceneController implements Initializable {
             logger.write("Sum is " + fpt.getResult());
         });
 
+        benchmarks.put("CPUBranches", () -> {
+            CPUBranchBenchmark bm = new CPUBranchBenchmark();
+            bm.initialize(100000);
+            bm.warmUp();
+
+            logger.write("Benchmark starting for CPUBranches");
+            timer.start();
+            bm.run();
+            logger.writeTime(timer.stop(), TimeUnit.MICROSECOND);
+
+        });
+
         // add the keys to the list
         for (Object str : benchmarks.keySet()) {
             ObservableList<String> add = choiceBox.getItems();
@@ -96,6 +109,8 @@ public class PrimarySceneController implements Initializable {
             if (methodToRun != null) {
                 methodToRun.run();
             }
+        } else {
+            logger.write("Please select a benchmark to run.");
         }
     }
 }
