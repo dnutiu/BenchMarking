@@ -19,7 +19,7 @@
 
 package gui;
 
-import benchmark.CPUDigitsOfPIBenchmark;
+import benchmark.cpu.CPUDigitsOfPIBenchmark;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;

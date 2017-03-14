@@ -19,7 +19,7 @@
 
 package tests;
 
-import benchmark.CPUDigitsOfPIBenchmark;
+import benchmark.cpu.CPUDigitsOfPIBenchmark;
 import org.junit.Before;
 import org.junit.Test;
 

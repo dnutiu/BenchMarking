@@ -17,7 +17,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package benchmark;
+package benchmark.utilities;
 
 import java.math.*;
 
@@ -25,7 +25,7 @@ import java.math.*;
  * Utility class uesd to compute the digits of PI.
  * credits: http://www.it.uc3m.es/~pedmume/asignaturas/2007/SI/rmi/rmi/Pi.java
  */
-class Pi {
+public class Pi {
 
     /** constants used in pi computation */
     private static final BigDecimal ZERO = BigDecimal.valueOf(0);
@@ -43,14 +43,14 @@ class Pi {
      * Construct a task to calculate pi to the specified
      * precision.
      */
-    Pi(int digits) {
+    public Pi(int digits) {
         this.digits = digits;
     }
 
     /**
      * Calculate pi.
      */
-    Object execute() {
+    public Object execute() {
         return computePi(digits);
     }
 

@@ -17,7 +17,10 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package benchmark;
+package benchmark.cpu;
+import benchmark.IBenchmark;
+import benchmark.utilities.Pi;
+
 import javax.naming.OperationNotSupportedException;
 
 /**
