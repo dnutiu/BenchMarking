@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (c) 2017 Nutiu Denis-Cosmin <denis.nutiu@gmail.com>
+  ~
+  ~ This file is part of BenchMarking.
+  ~
+  ~ BenchMarking is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ BenchMarking is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
+
+<GridPane fx:controller="gui.PrimarySceneController"
+          xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10" vgap="10">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+    <Text text="This application is still a demo."
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="6" />
+    <VBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnSpan="2">
+        <Text text="CPU Benchmarks" />
+        <Button text="Digits of Pi" onAction="#handleRunDigitsOfPi"/>
+    </VBox>
+    <ScrollPane GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="4">
+        <TextArea fx:id="textConsole" maxWidth="521"/>
+    </ScrollPane>
+
+</GridPane>
