@@ -63,7 +63,6 @@ public class CPUFixedPointTest implements IBenchmark {
 		default:
 			break;
 		}
-
 	}
 
 	@Override
