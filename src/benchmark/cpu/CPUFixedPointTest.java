@@ -33,6 +33,10 @@ public class CPUFixedPointTest implements IBenchmark {
 
 	}
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
 	@Override
 	public void warmUp() {
 		int oldsize = size;
