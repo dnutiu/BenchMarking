@@ -41,6 +41,7 @@ public class ConsoleLogger implements ILogger {
 
     @Override
     public void writeTime(long time, TimeUnit unit) {
-        System.out.println("Total execution time: " + TimeUnit.converNanosecondTo(time, unit));
+        System.out.println("Total execution time: " + TimeUnit.converNanosecondTo(time, unit)
+                + TimeUnit.getTimeUnit(unit));
     }
 }

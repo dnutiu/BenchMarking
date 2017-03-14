@@ -86,7 +86,7 @@ public class FileLogger implements ILogger {
     @Override
     public void writeTime(long time, TimeUnit unit) {
         try {
-            bufferedWriter.write("Total execution time: " + time);
+            bufferedWriter.write("Total execution time: " + time + TimeUnit.getTimeUnit(unit));
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
