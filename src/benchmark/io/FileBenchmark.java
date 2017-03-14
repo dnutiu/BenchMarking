@@ -97,10 +97,11 @@ public class FileBenchmark implements IBenchmark {
     }
 
     @Override
-    public void initialize() {
+    public void initialize(int value) {
         FileBenchmark.uniqueIndentifier += 1;
         file = new File("defaultTestFile" + FileBenchmark.uniqueIndentifier);
 
+        this.bytes = value;
         this.bytesToUse = bytes / bufferSize;
         this.fileSize = bytes / 1000000;
         this.buffer = new byte[this.bufferSize];

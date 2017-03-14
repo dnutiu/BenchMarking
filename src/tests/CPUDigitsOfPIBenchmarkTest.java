@@ -36,7 +36,7 @@ public class CPUDigitsOfPIBenchmarkTest {
     @Before
     public void setUp() {
         benchmark = new CPUDigitsOfPIBenchmark();
-        benchmark.initialize();
+        benchmark.initialize(10000);
     }
 
     @Test

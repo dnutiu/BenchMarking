@@ -21,21 +21,15 @@ package gui;
 
 import benchmark.cpu.CPUFixedPointTest;
 import benchmark.utilities.NumberRepresentation;
-import javafx.collections.ObservableMap;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
-import javafx.util.Pair;
 import logger.TextAreaLogger;
 import logger.TimeUnit;
-import org.codehaus.groovy.tools.shell.Command;
-import org.intellij.lang.annotations.Flow;
-import org.jetbrains.annotations.NotNull;
 import timer.Timer;
-
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.*;
 
@@ -65,7 +59,6 @@ public class PrimarySceneController implements Initializable {
     }
 
     private void loadBenchMarks() {
-
         benchmarks.put("Hello", new Runnable() {
             @Override
             public void run() {
@@ -77,8 +70,8 @@ public class PrimarySceneController implements Initializable {
             @Override
             public void run() {
                 CPUFixedPointTest fpt = new CPUFixedPointTest();
+                fpt.initialize(100000000);
                 fpt.warmUp();
-                fpt.setSize(100000000);
 
                 logger.write("Benchmark starting for fixed");
                 timer.start();
@@ -96,7 +89,10 @@ public class PrimarySceneController implements Initializable {
 
         // add the keys to the list
         for (Object str : benchmarks.keySet()) {
-            boolean add = choiceBox.getItems().add((String) str);
+            ObservableList<String> add = choiceBox.getItems();
+            if (add != null) {
+                add.add((String) str);
+            }
         }
     }
 

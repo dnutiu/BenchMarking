@@ -29,12 +29,8 @@ public class CPUFixedPointTest implements IBenchmark {
 	private int size;
 
 	@Override
-	public void initialize() {
-
-	}
-
-    public void setSize(int size) {
-        this.size = size;
+    public void initialize(int value) {
+        this.size = value;
     }
 
 	@Override

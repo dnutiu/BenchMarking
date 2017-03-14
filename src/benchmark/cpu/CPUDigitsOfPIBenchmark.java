@@ -65,8 +65,8 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
     }
 
     @Override
-    public void initialize() {
-        this.numberOfDigits = 10000;
+    public void initialize(int value) {
+        this.numberOfDigits = value;
     }
 
     @Override

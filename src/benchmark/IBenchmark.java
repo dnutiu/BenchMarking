@@ -40,7 +40,7 @@ public interface IBenchmark {
      * This will initialize the benchmark with the default values.
      * @throws OperationNotSupportedException When the method is not available for use.
      */
-    void initialize() throws OperationNotSupportedException;
+    void initialize(int value) throws OperationNotSupportedException;
 
     /**
      * This will run the benchmark.
