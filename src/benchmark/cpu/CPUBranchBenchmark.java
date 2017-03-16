@@ -59,6 +59,10 @@ public class CPUBranchBenchmark implements IBenchmark {
         throw new OperationNotSupportedException("Please use run() instead");
     }
 
+    public long getResult() {
+        return this.numberOfBranches;
+    }
+
     @Override
     public void clean() throws OperationNotSupportedException {
 
