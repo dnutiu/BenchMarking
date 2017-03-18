@@ -80,6 +80,11 @@ public class CPUDigitsOfPIBenchmark implements IBenchmark {
     }
 
     @Override
+    public String getResult() {
+        return String.valueOf(this.numberOfDigits);
+    }
+
+    @Override
     public void clean() throws OperationNotSupportedException {
         throw new OperationNotSupportedException("Method not implemented!");
     }

@@ -59,8 +59,9 @@ public class CPUArithmeticBenchmark implements IBenchmark {
         throw new OperationNotSupportedException("Please use run() instead!");
     }
 
-    public long getResults() {
-        return this.size * 4; // nano Flops?
+    @Override
+    public String getResult() {
+        return String.valueOf(this.size * 4); // nano Flops?
     }
 
     @Override

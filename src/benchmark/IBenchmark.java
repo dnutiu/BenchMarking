@@ -61,4 +61,12 @@ public interface IBenchmark {
      * @throws OperationNotSupportedException When the method is not available for use.
      */
     void clean() throws OperationNotSupportedException;
+
+    /**
+     * Will get return the result of the benchmark.
+     * Every benchmark will return something different, and it's result may have a different meaning.
+     *
+     * @return Depends on the benchmark. It might be the MOPS or value passed to initialize.
+     */
+    String getResult();
 }
