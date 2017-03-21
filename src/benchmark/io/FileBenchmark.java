@@ -137,4 +137,9 @@ public class FileBenchmark implements IBenchmark {
         //noinspection ResultOfMethodCallIgnored
         file.delete();
     }
+
+    @Override
+    public String getResult() {
+        return null;
+    }
 }
