@@ -54,7 +54,7 @@ public interface IBenchmark {
      * @param parameters it takes a variable number of parameters.
      * @throws OperationNotSupportedException When the method is not available for use.
      */
-    void run(Object ... parameters) throws OperationNotSupportedException;
+    void run(Object... parameters) throws OperationNotSupportedException, InterruptedException;
 
     /**
      * This will clean up after the benchmark was run.

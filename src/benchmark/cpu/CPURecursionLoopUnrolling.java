@@ -21,10 +21,12 @@ package benchmark.cpu;
 
 import benchmark.IBenchmark;
 
+import java.math.BigInteger;
+
 public class CPURecursionLoopUnrolling implements IBenchmark {
 
     private int size;
-    private int calls;
+    private long last_prime;
     private long result;
 
     @Override
@@ -52,7 +54,7 @@ public class CPURecursionLoopUnrolling implements IBenchmark {
             try {
                 this.result = this.recursiveUnrolled(2, unrollLevel, this.size);
             } catch (StackOverflowError e) {
-                System.out.println("Exception occured, number of calls: " + this.calls);
+                System.out.println("Exception occured, last prime number: " + this.last_prime);
             }
 
         } else {
@@ -61,7 +63,6 @@ public class CPURecursionLoopUnrolling implements IBenchmark {
     }
 
     private long recursive(long i, long n) {
-        this.calls += 1;
         long prime = findNextPrime(i);
 
         if (prime >= n)
@@ -76,56 +77,42 @@ public class CPURecursionLoopUnrolling implements IBenchmark {
     }
 
     private long recursiveUnrolled(long i, int l, int n) throws StackOverflowError {
-        this.calls += 1;
         long prime = i;
-        this.result = 0;
 
-        if (i >= n) {
-            return 0;
+        if (prime >= n) {
+            return prime - 1;
         }
 
-        for (int j = 0; j < l; ++j) {
+        for (int j = 0; j <= l; ++j) {
             prime = this.findNextPrime(prime);
-//            result += prime;
         }
 
-        return prime + this.recursiveUnrolled(prime + 1, l, n);
+        return this.recursiveUnrolled(prime + 1, l, n);
     }
 
     private long findNextPrime(long n) {
         long result = n;
         while (!isPrime(result)) {
-            ++result;
+            result++;
         }
-        this.calls += 1;
+        this.last_prime = result;
         return result;
     }
 
     /**
      * Returns true of false if the number is prime
      */
-    boolean isPrime(long n) {
-        if (n <= 1) {
-            return false;
-        } else if (n <= 3) {
-            return true;
-        } else if ((n % 2 == 0) || (n % 3 == 0)) {
-            return false;
-        }
-        long i = 5;
-        while (i * i <= n) {
-            if (n % i == 0 || n % (i + 2) == 0) {
-                return false;
-            }
-            i += 6;
-        }
-        return true;
+    private boolean isPrime(long n) {
+        // Converting long to BigInteger
+        BigInteger b = new BigInteger(String.valueOf(n));
+
+        return b.isProbablePrime(1);
     }
 
     @Override
     public void clean() {
         this.result = 0;
-        this.calls = 0;
+        this.last_prime = 0;
     }
 
     @Override
