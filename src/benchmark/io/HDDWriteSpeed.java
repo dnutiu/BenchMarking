@@ -55,6 +55,11 @@ public class HDDWriteSpeed implements IBenchmark {
             bufferSize = (Integer) options[2];
         }
 
+        int dasFileSize = 128;
+        if (options.length >= 4) {
+            bufferSize = (Integer) options[3];
+        }
+
         String prefix = "uselessFiles/testFile";
         String suffix = ".dat";
         int startIndex = 0;
@@ -63,10 +68,10 @@ public class HDDWriteSpeed implements IBenchmark {
         try {
             if (option.equals("fs"))
                 writer.streamWriteFixedSize(prefix, suffix, startIndex,
-                        endIndex, 256 * 1024 * 1024, clean);
+                        endIndex, 512 * 1024 * 1024, clean);
             else if (option.equals("fb"))
                 writer.streamWriteFixedBuffer(prefix, suffix, startIndex,
-                        endIndex, 4 * 1024, bufferSize, clean);
+                        endIndex, 128 * 1024 * 1024, bufferSize, clean);
             else
                 throw new IllegalArgumentException("Argument "
                         + options[0].toString() + " is undefined");

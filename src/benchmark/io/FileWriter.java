@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Random;
-import java.util.StringJoiner;
 
 import timer.Timer;
 import logger.TimeUnit;
@@ -95,7 +94,6 @@ public class FileWriter {
         while (currentFileSize <= MAX_FILE_SIZE
                 && counter <= maxIndex - minIndex) {
             counter++;
-//			writeWithBufferSize();
             // update fileSize instead of bufferSize
             currentFileSize += currentFileSize;
             writeWithBufferSize(fileName, bufferSize, currentFileSize, clean);
