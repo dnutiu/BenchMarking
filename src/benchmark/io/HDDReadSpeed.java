@@ -24,9 +24,11 @@ import benchmark.IBenchmark;
 import java.io.IOException;
 
 public class HDDReadSpeed implements IBenchmark {
+	private int bufferSize;
 
 	@Override
 	public void initialize(int size) {
+		this.bufferSize = size;
 	}
 
 	@Override
@@ -48,7 +50,7 @@ public class HDDReadSpeed implements IBenchmark {
 			int maxBufferSize = 4 * 1024 * 1024; // 4MB
 			String sourcePath = "uselessFiles/bigFile";
 
-//            reader.compareWithBufferSize("uselessFiles/bigFile", "uselessFiles/bigFile2", 256 * 1024);
+//
 			switch (option) {
 			case STREAM:
 				reader.streamReadFixedSize(sourcePath, minBufferSize, maxBufferSize);
@@ -57,8 +59,11 @@ public class HDDReadSpeed implements IBenchmark {
 				reader.nIOReadFixedSize(sourcePath, minBufferSize, maxBufferSize);
 				break;
 			case COMPARE:
-			    reader.compareNIO("uselessFiles/bigFile", "uselessFiles/bigFile2", 256 * 1024);
-
+			    reader.compareNIO("uselessFiles/bigFkingFile", "uselessFiles/bigFkingFile2", this.bufferSize * 1024);
+			    break;
+			case COMPARESTREAM:
+				reader.compareWithBufferSize("uselessFiles/bigFkingFile", "uselessFiles/bigFkingFile2", this.bufferSize * 1024);
+				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -77,7 +82,8 @@ public class HDDReadSpeed implements IBenchmark {
 	public enum ReadOptions {
 		STREAM,
 		NIO,
-        COMPARE
+        COMPARE,
+		COMPARESTREAM
 	}
 
 }

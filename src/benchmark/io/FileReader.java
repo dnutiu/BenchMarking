@@ -184,9 +184,9 @@ public class FileReader {
             totalBytes += c1;
             totalBytes += c2;
 
-            buffer.flip();
-            buffer2.flip();
             try {
+                buffer.flip();
+                buffer2.flip();
                 while (true) {
                     byte b1 = buffer.get();
                     byte b2 = buffer2.get();
